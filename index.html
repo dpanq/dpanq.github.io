@@ -50,7 +50,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -60,6 +60,97 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-17-复习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/04/17-复习/" class="article-date">
+  <time datetime="2016-12-04T15:18:50.490Z" itemprop="datePublished">2016-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JavaScript高级第三天"><a href="#JavaScript高级第三天" class="headerlink" title="JavaScript高级第三天"></a>JavaScript高级第三天</h1><h2 id="绘制原型三角"><a href="#绘制原型三角" class="headerlink" title="绘制原型三角"></a>绘制原型三角</h2><pre><code>1. 先画构造函数
+2. 因为有构造函数就有原型，所以画原型
+3. 画构造函数和原型之间的关系
+4. 画实例化出来的对象
+5. 画实例和构造函数以及原型之间的关系
+</code></pre><h2 id="constructor属性"><a href="#constructor属性" class="headerlink" title="constructor属性"></a>constructor属性</h2><pre><code>1. 原型中的属性
+2. 是在构造函数创建出来的时候，系统创建原型的时候，默认的让原型中的constructor属性指向构造函数本身
+3. 这个属性基本用不到
+</code></pre><h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><pre><code>对象都有原型，原型也是对象，所以原型也有原型，所以就形成了一条链式结构，这个结构就叫做原型链
+</code></pre><h3 id="绘制原型链图"><a href="#绘制原型链图" class="headerlink" title="绘制原型链图"></a>绘制原型链图</h3><pre><code>1. 先画构造函数
+2. 因为有构造函数就有原型，所以画原型
+3. 画构造函数和原型之间的关系
+4. 画实例化出来的对象
+5. 画实例和构造函数以及原型之间的关系
+6. 把原型当做对象来对待，找到原型的构造函数，将构造函数画出来
+7. 画出上一步中构造函数的原型
+8. 把第6步和第7不步中的构造函数和原型之间的关系画出来
+9. 把第6步中的原型和其构造函数还有原型之间的关系画出来
+重复 6-9 直到画到 Object.prototype 让其原型指向null 就结束了
+</code></pre><h3 id="属性搜索原则"><a href="#属性搜索原则" class="headerlink" title="属性搜索原则"></a>属性搜索原则</h3><pre><code>1.现在对象本身中进行查找，如果找到了就直接使用
+2.如果没有，就去原型中查找，如果找到了就直接使用
+3.如果没有找到，就去原型的原型中查找，以此往复，直到找到null
+</code></pre><h3 id="Array-prototype-是一个空数组"><a href="#Array-prototype-是一个空数组" class="headerlink" title="Array.prototype 是一个空数组"></a>Array.prototype 是一个空数组</h3><p>//arr—-&gt;Array.prototype—–&gt;Object.Prototype—–&gt;null<br>var arr = [];</p>
+<h2 id="instanceof-关键字"><a href="#instanceof-关键字" class="headerlink" title="instanceof 关键字"></a>instanceof 关键字</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">对象  <span class="keyword">instanceof</span> 构造函数</div><div class="line"><span class="comment">//返回值为boolean类型</span></div><div class="line"><span class="comment">//功能： 判断构造函数的原型是不是在该对象的原型链上</span></div></pre></td></tr></table></figure>
+<h2 id="Object-prototype的成员"><a href="#Object-prototype的成员" class="headerlink" title="Object.prototype的成员"></a>Object.prototype的成员</h2><ul>
+<li>constructor 原型中的属性指向和原型相关的构造函数</li>
+<li><p>hasOwnProperty</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">对象.hasOwnProperty(属性名)</div><div class="line"><span class="comment">//返回值为boolean类型</span></div><div class="line"><span class="comment">//功能：判断属性是否存在对象本身中</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>isPrototypeOf</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">对象.isPrototypeof(对象<span class="number">1</span>)</div><div class="line"><span class="comment">//返回值为boolean</span></div><div class="line"><span class="comment">//功能：判断对象是否是对象1的原型对象</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>propertyIsEnumerable</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">对象.propertyIsEnumberable(属性名)</div><div class="line"><span class="comment">//返回值为boolean</span></div><div class="line"><span class="comment">//功能：判断属性是否属于对象本身并且能够被遍历（for-in）</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>toString toLocaleString<br>  都是将对象转换成字符串类型<br>  toLocaleString会将字符串转换成本地格式的字符串， 本地格式为系统设置</p>
+</li>
+<li><p>valueOf<br>  在对象参与运算的时候，会首先调用valueOf方法，如果获取到的值能够参与运算就直接使用，<br>  如果不能参与运算，就调用toString方法<br>  []==![] true<br>  {}==!{} false</p>
+</li>
+</ul>
+<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><pre><code>用来创建函数的
+</code></pre><ul>
+<li>如果不传参数，创建出来的是空函数</li>
+<li>如果传一个参数，创建出来的时候有函数体，但是没有形参的函数</li>
+<li>如果传多个参数，最后参数会被作为函数体，之前所有的参数都会被作为形参</li>
+</ul>
+<p>可以把字符串转换成代码</p>
+<h2 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h2><pre><code>也可以将字符串转换成代码并且执行
+</code></pre><h3 id="Function和eval的区别"><a href="#Function和eval的区别" class="headerlink" title="Function和eval的区别"></a>Function和eval的区别</h3><pre><code>* Funtion创建出来的是函数，函数需要手动调用，里面的代码才会执行
+* eval直接回将字符串转换成代码，并且执行
+</code></pre><h3 id="Function和eval的共同点"><a href="#Function和eval的共同点" class="headerlink" title="Function和eval的共同点"></a>Function和eval的共同点</h3><pre><code>* 都可以将字符串转换成代码
+* 都不安全
+</code></pre><h3 id="eval处理JSON格式字符串的时候"><a href="#eval处理JSON格式字符串的时候" class="headerlink" title="eval处理JSON格式字符串的时候"></a>eval处理JSON格式字符串的时候</h3><pre><code>* 会把JSON格式字符串中的{}当做代码段来处理，所以会报错
+* 处理方式两种
+    * 给JSON字符串前后拼接小括号()
+    * 将变量的声明以及等号 拼接在JSON格式字符串的前面
+</code></pre><h2 id="静态成员和实例成员"><a href="#静态成员和实例成员" class="headerlink" title="静态成员和实例成员"></a>静态成员和实例成员</h2><ul>
+<li>静态成员：通过构造函数去访问的成员就是静态成员</li>
+<li>实例成员：通过实例去访问的成员就是实例成员</li>
+</ul>
+<h2 id="arguments对象"><a href="#arguments对象" class="headerlink" title="arguments对象"></a>arguments对象</h2><p>arguments对象是函数中的一个对象，在函数调用的时候，会将所有传入的实参依次存入该对象</p>
+<ul>
+<li>length  获取传入实参的个数</li>
+<li>callee  指向函数本身   匿名函数的递归</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/04/17-复习/" data-id="ciwasngjn00006ova2hhj27x4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-xiaoji" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -242,7 +333,7 @@ JavaScript中的对象就是无序键值对儿的集合
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/04/xiaoji/" data-id="ciw9eynrk0001m0va92iskcpn" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/12/04/xiaoji/" data-id="ciwasnglw00026ovart71kxq6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -287,7 +378,7 @@ JavaScript中的对象就是无序键值对儿的集合
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/03/hello-world/" data-id="ciw9eynr20000m0vah7kbgfsw" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/12/03/hello-world/" data-id="ciwasngkb00016ovargcz1d2x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -312,7 +403,7 @@ JavaScript中的对象就是无序键值对儿的集合
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
     </div>
@@ -322,9 +413,13 @@ JavaScript中的对象就是无序键值对儿的集合
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/12/04/17-复习/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2016/12/04/xiaoji/">xiaoji</a>
